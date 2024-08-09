@@ -1,8 +1,6 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
-import { clone } from "three/examples/jsm/utils/SkeletonUtils.js";
 
 // Canvas
 const canvas = document.querySelector(".webgl1");
@@ -46,25 +44,6 @@ function screenToWorld(x, y, camera) {
     return pos;
 }
 
-function displayCurrentFontSize() {
-    // Get the element by its ID
-    const element = document.querySelector('body');
-
-    // Get the computed style of the element
-    const computedStyle = window.getComputedStyle(element);
-
-    // Get the font size
-    const fontSize = computedStyle.fontSize;
-
-    // Convert font size to a number (removing 'px' if present)
-    const fontSizeValue = parseFloat(fontSize);
-
-    // Display the font size
-    console.log(`Current font size of element: ${fontSize} (${fontSizeValue}px)`);
-
-    // Optionally, you can return the font size value
-    return fontSizeValue;
-}
 
 const getElementTopPosition = (element) => {
     const rect = element.getBoundingClientRect();
@@ -74,7 +53,6 @@ const getElementTopPosition = (element) => {
 function updateButterfliesPosition() {
 
     if (butterfly1) {
-        //let x = document.querySelector('.hero-media img').getBoundingClientRect().left/window.innerWidth;
         const pos1 = screenToWorld(window.innerWidth * 0.95, window.innerHeight * 0.45, camera);
         butterfly1.position.set(pos1.x, pos1.y, pos1.z);
         butterfly1.rotation.z = Math.PI / 4; // 45 degrees
